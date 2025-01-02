@@ -1,0 +1,65 @@
+.Footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.horizontal_menu{
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.horizontal_menu li{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.horizontal_menu li i {
+    font-size: 22px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.horizontal_menu li:hover i {
+    color: #4CAF50;
+    transform: translateY(-2px);
+}
+
+.horizontal_menu li:active i {
+    transform: translateY(0);
+}
+
+/* 활성 메뉴 표시를 위한 스타일 (필요시 사용) */
+.horizontal_menu li.active i {
+    color: #4CAF50;
+}
+
+.horizontal_menu li.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+}
