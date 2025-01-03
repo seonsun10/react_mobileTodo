@@ -45,31 +45,3 @@
     font-weight: 500;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
-
-.Header .section_edit {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.Header .section_edit:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-.Header .section_edit i {
-    color: white;
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}

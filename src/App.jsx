@@ -3,46 +3,34 @@ import "./App.css";
 import Header from "./components/Header";
 import Content from "./components/Content"; 
 import Footer from "./components/Footer";
-import Button from "./components/Button";
+import Button from "./components/common/Button";
 
 // mockData: 임시 할 일 데이터
 const mockData = [
   {
-    id: 0,
-    title: "12월 15일의 Todo제목입니다.",
-    content: "1215TodoContent",
-    date: new Date("2024-12-15").toLocaleDateString(),
-  },
-  {
     id: 1,
-    title: "1월 2일의 Todo제목입니다.", 
-    content: "1231TodoContent",
-    date: new Date("2025-1-2").toLocaleDateString(),
+    title: "오늘 할일 1: 코드 리뷰",
+    content: "프론트엔드 코드 리뷰 및 피드백",
+    date: new Date().toLocaleDateString()
   },
   {
     id: 2,
-    title: "내일 할 일 1: 프로젝트 기획안 작성",
-    content: "신규 프로젝트의 기획안 초안 작성하고 팀원들과 공유하기",
-    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString(),
+    title: "오늘 할일 2: API 연동",
+    content: "백엔드 API 연동 작업",
+    date: new Date().toLocaleDateString()
   },
   {
     id: 3,
-    title: "내일 할 일 2: 팀 미팅 준비",
-    content: "오후 2시 팀 미팅 발표자료 준비 및 회의록 정리",
-    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString(),
+    title: "내일 할일 1: 디자인 미팅",
+    content: "UI/UX 디자인 검토 회의",
+    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString()
   },
   {
     id: 4,
-    title: "내일 할 일 3: 운동가기",
-    content: "헬스장 PT 세션 참석 (가슴/어깨 운동)",
-    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString(),
-  },
-  {
-    id: 5,
-    title: "1월 12일의 Todo제목입니다.",
-    content: "112TodoContent",
-    date: new Date("2025-01-12").toLocaleDateString(),
-  },
+    title: "내일 할일 2: 테스트 코드",
+    content: "단위 테스트 코드 작성",
+    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString()
+  }
 ];
 
 // reducer: 할 일 데이터 CRUD 작업을 처리하는 함수
@@ -75,7 +63,7 @@ const getTomorrowData = (state) => {
 };
 
 // Context API를 통해 할 일 데이터를 전역으로 관리
-export const mockDataContext = createContext();
+export const TodoContext = createContext();
 
 function App() {
   // useReducer를 사용하여 할 일 데이터 상태 관리
@@ -87,20 +75,17 @@ function App() {
 
   const contextValue = useMemo(() => ({
     today,
-    tomorrow
+    tomorrow,
+    dispatch
   }), [today, tomorrow]);
 
   return (
-    <>
-      <div>
-        <mockDataContext.Provider value={contextValue}>
-          <Header />
-          <Content />
-          <Button type={"ADD bi bi-pencil"} />
-          <Footer />
-        </mockDataContext.Provider>
-      </div>
-    </>
+    <TodoContext.Provider value={contextValue}>
+      <Header />
+      <Content />
+      <Button type={"ADD bi bi-pencil"} />
+      <Footer />
+    </TodoContext.Provider>
   );
 }
 

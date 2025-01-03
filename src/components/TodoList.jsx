@@ -1,11 +1,11 @@
 import "./TodoList.css";
 import TodoItem from "./TodoItem";
 import { useContext, useState, useEffect } from "react";
-import { mockDataContext } from "../App";
+import { TodoContext } from "../App";
 
 const TodoList = () => {
   // Context에서 오늘과 내일의 할 일 데이터를 가져옴
-  const { today, tomorrow } = useContext(mockDataContext);
+  const { today, tomorrow } = useContext(TodoContext);
   
   // 검색창의 확장 여부를 관리하는 상태
   const [isSearchExpanded, setIsSearchExpanded] = useState(true);
