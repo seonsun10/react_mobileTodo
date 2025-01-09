@@ -1,0 +1,65 @@
+.TodoCalendar {
+  display: flex;
+  position: relative;
+  top: 10px;
+  height: 100%;
+}
+
+.custom-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  max-height: 400px;
+}
+
+.react-calendar__month-view__weekdays {
+  height: 50px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 토요일에 해당하는 일자 */
+.satur {
+  color: rgb(54, 99, 197);
+}
+
+
+/* 일 버튼 */
+.react-calendar__month-view__days__day {
+  border-radius: 10px;
+  height: 50px;
+}
+
+/* 선택일자 */
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: #45a049;
+}
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+    background-color: #45a049;
+}
+.react-calendar__tile--active {
+    background: #45a049;
+    color: white;
+}
+
+.react-calendar__month-view__days {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%; /* 화면 높이에 맞추기 */
+}
+
+.react-calendar__month-view__days .react-calendar__tile {
+    flex: 1 0 14.2857%; /* 7일 기준으로 나누기 */
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    height: 55px; /* 6주 기준으로 높이 조정 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 크기 계산 */
+}

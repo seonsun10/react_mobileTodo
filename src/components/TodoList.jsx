@@ -1,86 +1,56 @@
-import "./TodoList.css";
-import TodoItem from "./TodoItem";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { TodoContext } from "../App";
+
+import TodoItem from "./TodoItem";
+import Search from "./Search";
+
+import "./TodoList.css";
 
 const TodoList = () => {
   // Context에서 오늘과 내일의 할 일 데이터를 가져옴
   const { today, tomorrow } = useContext(TodoContext);
-  
-  // 검색창의 확장 여부를 관리하는 상태
-  const [isSearchExpanded, setIsSearchExpanded] = useState(true);
-  // 검색버튼의 표시 여부를 관리하는 상태
-  const [isSearchVisible, setIsSearchVisible] = useState(true);
 
-  // 스크롤 이벤트를 감지하여 검색 버튼의 표시 여부를 제어하는 효과
-  useEffect(() => {
-    const content = document.querySelector('.content_wrapper');
-    let lastScrollY = 0;
-    
-    const handleScroll = () => {
-      const currentScrollY = content.scrollTop;
-      
-      if (currentScrollY === 0) {
-        // 최상단일 때
-        setIsSearchVisible(true);
-        setIsSearchExpanded(true);
-      } else if (currentScrollY > lastScrollY) {
-        // 아래로 스크롤할 때
-        setIsSearchVisible(false);
-        setIsSearchExpanded(false);
-      } else {
-        // 위로 스크롤할 때
-        setIsSearchVisible(true);
-      }
-      
-      lastScrollY = currentScrollY;
-    };
+  // 검색어 처리
+  const [searchVal, setSearchVal] = useState("");
 
-    content.addEventListener('scroll', handleScroll);
-    return () => content.removeEventListener('scroll', handleScroll);
-  }, []);
 
-  // 검색 버튼 클릭 시 검색창 확장/축소 토글
-  const handleSearchClick = () => {
-    const content = document.querySelector('.content_wrapper');
-    if (content.scrollTop !== 0) {
-      setIsSearchExpanded(!isSearchExpanded);
+  // 검색 해당 데이터 조회
+  const getSearchTodoData = () => {
+    if (searchVal === "") {
+      return [today, tomorrow];
     }
+    const searchToday = today.filter((item) => {
+      return item.title.toLowerCase().includes(searchVal.toLowerCase());
+    });
+    const searchTomorrow = tomorrow.filter((item) => {
+      return item.title.toLowerCase().includes(searchVal.toLowerCase());
+    });
+
+    return [searchToday, searchTomorrow];
   };
 
-  return (
-    <div className="TodoList">
-      <div className={`search_area ${isSearchVisible ? '' : 'hidden'}`}>
-        <div className={`search_container ${isSearchExpanded ? 'expanded' : ''}`}>
-          <input 
-            type="text" 
-            placeholder="검색어를 입력하세요"
-            className={`search_input ${isSearchExpanded ? 'expanded' : ''}`}
-          />
-          <button className="search_button" onClick={handleSearchClick}>
-            <i className="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-      
-      <div className="today_section">
-        <h4>오늘의 할 일!</h4>
-        {today && today.length > 0 && (
-          <TodoItem
-            date={today[0].date}
-            items={today}
-          />
-        )}
-      </div>
+  const todayData = getSearchTodoData()[0];
+  const tomorrowData = getSearchTodoData()[1];
 
-      <div className="tomorrow_section">
-        <h4>내일의 할 일!</h4>
-        {tomorrow && tomorrow.length > 0 && (
-          <TodoItem
-            date={tomorrow[0].date}
-            items={tomorrow}
-          />
-        )}
+
+
+  return (
+    <div className="content_wrapper searchBox">
+      <Search setSearchVal={setSearchVal} targetClassNm={".content_wrapper"}/>
+      <div className="TodoList">
+        <div className="today_section">
+          <h4>오늘의 할 일!</h4>
+          {today && today.length > 0 && (
+            <TodoItem date={today[0].date} items={todayData} />
+          )}
+        </div>
+
+        <div className="tomorrow_section">
+          <h4>내일의 할 일!</h4>
+          {tomorrow && tomorrow.length > 0 && (
+            <TodoItem date={tomorrow[0].date} items={tomorrowData} />
+          )}
+        </div>
       </div>
     </div>
   );

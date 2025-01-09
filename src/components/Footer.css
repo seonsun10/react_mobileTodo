@@ -36,6 +36,8 @@
     font-size: 22px;
     color: #666;
     transition: all 0.3s ease;
+    border: none;
+    background-color: white;
 }
 
 .horizontal_menu li:hover i {

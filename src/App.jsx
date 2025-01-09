@@ -1,9 +1,13 @@
 import { useMemo, createContext, useReducer } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
-import Content from "./components/Content"; 
+import List from "./List";
+import TodoCalendar from "./TodoCalendar";
+import Chat from "./Chat";
+import Settings from "./Settings";
 import Footer from "./components/Footer";
-import Button from "./components/common/Button";
+import Button from "./components/Button";
 
 // mockData: 임시 할 일 데이터
 const mockData = [
@@ -11,26 +15,30 @@ const mockData = [
     id: 1,
     title: "오늘 할일 1: 코드 리뷰",
     content: "프론트엔드 코드 리뷰 및 피드백",
-    date: new Date().toLocaleDateString()
+    date: new Date().toLocaleDateString(),
   },
   {
     id: 2,
     title: "오늘 할일 2: API 연동",
     content: "백엔드 API 연동 작업",
-    date: new Date().toLocaleDateString()
+    date: new Date().toLocaleDateString(),
   },
   {
     id: 3,
     title: "내일 할일 1: 디자인 미팅",
     content: "UI/UX 디자인 검토 회의",
-    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString()
+    date: new Date(
+      new Date().setDate(new Date().getDate() + 1)
+    ).toLocaleDateString(),
   },
   {
     id: 4,
     title: "내일 할일 2: 테스트 코드",
     content: "단위 테스트 코드 작성",
-    date: new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString()
-  }
+    date: new Date(
+      new Date().setDate(new Date().getDate() + 1)
+    ).toLocaleDateString(),
+  },
 ];
 
 // reducer: 할 일 데이터 CRUD 작업을 처리하는 함수
@@ -58,7 +66,9 @@ const getTodayData = (state) => {
 // 내일 날짜의 할 일 데이터만 필터링하여 반환
 const getTomorrowData = (state) => {
   const today = new Date();
-  const tomorrow = new Date(today.setDate(today.getDate() + 1)).toLocaleDateString();
+  const tomorrow = new Date(
+    today.setDate(today.getDate() + 1)
+  ).toLocaleDateString();
   return state.filter((item) => item.date === tomorrow);
 };
 
@@ -73,17 +83,31 @@ function App() {
   const today = useMemo(() => getTodayData(state), [state]);
   const tomorrow = useMemo(() => getTomorrowData(state), [state]);
 
-  const contextValue = useMemo(() => ({
-    today,
-    tomorrow,
-    dispatch
-  }), [today, tomorrow]);
+  const contextValue = useMemo(
+    () => ({
+      today,
+      tomorrow,
+      dispatch,
+    }),
+    [today, tomorrow]
+  );
 
   return (
     <TodoContext.Provider value={contextValue}>
       <Header />
-      <Content />
-      <Button type={"ADD bi bi-pencil"} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <List>
+              <Button type={"ADD bi bi-pencil"} />
+            </List>
+          }
+        ></Route>
+        <Route path="/calendar" element={<TodoCalendar />}></Route>
+        <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/settings" element={<Settings />}></Route>
+      </Routes>
       <Footer />
     </TodoContext.Provider>
   );
