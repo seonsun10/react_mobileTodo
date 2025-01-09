@@ -41,10 +41,23 @@ const Chat = () => {
   const [chatList, setChatList] = useState(mockChatList);
   const [searchVal, setSearchVal] = useState("");
 
+  //채팅방 검색
+  const getSearchChatList = () => {
+    if (searchVal === "") {
+      return chatList;
+    }
+
+    return chatList.filter((item) =>
+      item.title.toLowerCase().includes(searchVal.toLowerCase())
+    );
+  };
+
+  const searchRoomList = getSearchChatList();
+
   return (
     <div className="Chat searchBox">
       <Search setSearchVal={setSearchVal} targetClassNm={".Chat"} />
-      <ChatList chatList={chatList} />
+      <ChatList chatList={searchRoomList} />
     </div>
   );
 };
