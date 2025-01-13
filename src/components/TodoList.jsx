@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 import { TodoContext } from "../App";
 
 import TodoItem from "./TodoItem";
@@ -12,7 +12,6 @@ const TodoList = () => {
 
   // 검색어 처리
   const [searchVal, setSearchVal] = useState("");
-
 
   // 검색 해당 데이터 조회
   const getSearchTodoData = () => {
@@ -29,10 +28,8 @@ const TodoList = () => {
     return [searchToday, searchTomorrow];
   };
 
-  const todayData = getSearchTodoData()[0];
-  const tomorrowData = getSearchTodoData()[1];
-
-
+  // useMemo를 사용하여 리렌더링 최적화
+  const [todayData, tomorrowData] = useMemo(() => getSearchTodoData(), [searchVal, today, tomorrow]);
 
   return (
     <div className="content_wrapper searchBox">

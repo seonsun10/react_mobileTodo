@@ -1,19 +1,14 @@
 .ChatList {
   background-color: #f9f9f9;
   border-radius: 20px;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-  /* border: 1px solid #ddd; */
-  /* max-height: 400px;
-    overflow-y: auto; */
   width: 100%;
 }
 
 .ChatList > div {
   margin: 10px 0;
   padding: 15px;
-  border-radius: 5px;
-  background-color: #fff;
   border-radius: 20px;
+  background-color: #fff;
 }
 
 .ChatList div .title {
@@ -29,6 +24,9 @@
   font-size: 1em;
   line-height: 1.5;
   padding-left: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ChatList h4 {
@@ -60,9 +58,7 @@
 }
 
 .chatDate {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
+  text-align: right;
   color: #666;
   font-size: 0.8rem;
 }

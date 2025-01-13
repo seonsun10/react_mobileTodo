@@ -7,33 +7,33 @@ import "./Chat.css";
 const mockChatList = [
   {
     roomNo: 1,
-    title: "1번째 방",
-    content: "1번 내용",
+    title: "개발자들의 방",
+    content: "프로그래밍 관련 질문과 답변을 나누는 방입니다.",
   },
   {
     roomNo: 2,
-    title: "2번째 방",
-    content: "2번 내용",
+    title: "디자인 토론방",
+    content: "디자인 관련 아이디어와 피드백을 공유하는 공간입니다.",
   },
   {
     roomNo: 3,
-    title: "3번째 방",
-    content: "3번 내용",
+    title: "게임 개발 방",
+    content: "게임 개발에 관한 모든 것을 이야기하는 방입니다.",
   },
   {
     roomNo: 4,
-    title: "4번째 방",
-    content: "4번 내용",
+    title: "AI 연구실",
+    content: "인공지능과 머신러닝에 대한 연구와 토론을 하는 방입니다.",
   },
   {
     roomNo: 5,
-    title: "5번째 방",
-    content: "5번 내용",
+    title: "일상 대화방",
+    content: "일상적인 이야기와 소소한 대화를 나누는 방입니다.",
   },
   {
     roomNo: 6,
-    title: "6번째 방",
-    content: "6번 내용",
+    title: "영화 추천 방",
+    content: "좋은 영화를 추천하고 리뷰를 나누는 방입니다.",
   },
 ];
 

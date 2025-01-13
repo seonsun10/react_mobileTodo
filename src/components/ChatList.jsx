@@ -1,4 +1,5 @@
 import "./ChatList.css";
+import ChatRoom from "./ChatRoom";
 
 const ChatList = ({ chatList }) => {
   return (
@@ -9,11 +10,7 @@ const ChatList = ({ chatList }) => {
           {chatList &&
             chatList.map((chatRoom) => {
               return (
-                  <div key={chatRoom.roomNo} className="room">
-                    <div className="title">{chatRoom.title}</div>
-                    <div className="content">{chatRoom.content}</div>
-                    <div className="chatDate">2025-01-09</div>
-                  </div>
+                  <ChatRoom key={chatRoom.roomNo} {...chatRoom}/>
               );
             })
           }
