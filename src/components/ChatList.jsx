@@ -9,11 +9,9 @@ const ChatList = ({ chatList }) => {
         <div className="room_items_container">
           {chatList &&
             chatList.map((chatRoom) => {
-              return (
-                  <ChatRoom key={chatRoom.roomNo} {...chatRoom}/>
-              );
-            })
-          }
+              return <ChatRoom key={chatRoom.roomNo} {...chatRoom} />;
+            })}
+          {chatList.length === 0 && <ChatRoom title={"방이 없습니다."} />}
         </div>
       </div>
     </div>

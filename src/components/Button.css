@@ -1,62 +1,93 @@
+/* 버튼 영역 */
+.ButtonArea{
+    width: 100%;
+    text-align: right;
+    padding: 10px 0;
+}
+
+
+/* 기본 버튼 스타일 */
 .Button {
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.Button_ADD {
-    position: fixed;
-    right: 20px;
-    bottom: 80px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: #4CAF50;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: white;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.Button_ADD:hover {
-    background-color: #45a049;
+.Button:hover {
+    background-color: #25943f;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-.Button_ADD:active {
+.Button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  /* ##기본 버튼 스타일 */
+
+.Button_ADD {
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #28a745;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.Button_ADD:hover {
+  background-color: #25943f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.Button_ADD:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Button 컴포넌트 스타일링 */
 .Button_EDIT {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .Button_EDIT:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .Button_EDIT i {
-    color: white;
-    font-size: 1.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.Button_REG {
+    /* float: right; */
 }

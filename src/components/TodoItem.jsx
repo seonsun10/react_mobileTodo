@@ -13,6 +13,7 @@ const TodoItem = ({ date, items }) => {
                 <h3 className="todo_title">{item.title}</h3>
               </div>
               <div className="todo_content">{item.content}</div>
+              <div className="register">{item.register}</div>
             </div>
             ))
           )}

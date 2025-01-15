@@ -1,14 +1,19 @@
 import { useContext, useState, useMemo } from "react";
 import { TodoContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 import TodoItem from "./TodoItem";
 import Search from "./Search";
+import Button from "./Button";
 
 import "./TodoList.css";
 
 const TodoList = () => {
   // Context에서 오늘과 내일의 할 일 데이터를 가져옴
   const { today, tomorrow } = useContext(TodoContext);
+
+  // 페이지 이동
+  const nav = useNavigate();
 
   // 검색어 처리
   const [searchVal, setSearchVal] = useState("");
@@ -29,27 +34,37 @@ const TodoList = () => {
   };
 
   // useMemo를 사용하여 리렌더링 최적화
-  const [todayData, tomorrowData] = useMemo(() => getSearchTodoData(), [searchVal, today, tomorrow]);
+  const [todayData, tomorrowData] = useMemo(
+    () => getSearchTodoData(),
+    [searchVal, today, tomorrow]
+  );
+
 
   return (
-    <div className="content_wrapper searchBox">
-      <Search setSearchVal={setSearchVal} targetClassNm={".content_wrapper"}/>
-      <div className="TodoList">
-        <div className="today_section">
-          <h4>오늘의 할 일!</h4>
-          {today && today.length > 0 && (
-            <TodoItem date={today[0].date} items={todayData} />
-          )}
-        </div>
+    <>
+      <div className="content_wrapper searchBox">
+        <Search
+          setSearchVal={setSearchVal}
+          targetClassNm={".content_wrapper"}
+        />
+        <div className="TodoList">
+          <div className="today_section">
+            <h4>오늘의 할 일!</h4>
+            {today && today.length > 0 && (
+              <TodoItem date={today[0].date} items={todayData} />
+            )}
+          </div>
 
-        <div className="tomorrow_section">
-          <h4>내일의 할 일!</h4>
-          {tomorrow && tomorrow.length > 0 && (
-            <TodoItem date={tomorrow[0].date} items={tomorrowData} />
-          )}
+          <div className="tomorrow_section">
+            <h4>내일의 할 일!</h4>
+            {tomorrow && tomorrow.length > 0 && (
+              <TodoItem date={tomorrow[0].date} items={tomorrowData} />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <Button type={"ADD bi bi-pencil"} clickBtn={()=>{nav('/newTodo')}}/>
+    </>
   );
 };
 

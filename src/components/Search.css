@@ -1,108 +1,87 @@
 /* searchBox - 공통 사용 검색 영역 사용 */
 .searchBox {
-    /* 전체 높이에서 Header(30vh)와 Footer(60px) 높이를 제외 */
-    height: calc(100vh - 30vh - 60px);
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  /* 스크롤바 스타일링 */
-  .searchBox::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .searchBox::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  
-  .searchBox::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-  
-  .searchBox::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
+  /* 전체 높이에서 Header(30vh)와 Footer(60px) 높이를 제외 */
+  height: calc(100vh - 30vh - 60px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 
 .search_area {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 100;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .search_area.hidden {
-    transform: translateY(-100%);
-    opacity: 0;
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .search_container {
-    display: flex;
-    align-items: center;
-    background-color: #ecedef;
-    border-radius: 25px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    overflow: hidden;
-    width: 40px;
-    max-width: calc(100% - 40px);
-    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  background-color: #ecedef;
+  border-radius: 25px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  width: 40px;
+  max-width: calc(100% - 40px);
+  margin: 10px 0;
 }
 
 .search_container.expanded {
-    width: 100%;
-    padding-left: 16px;
+  width: 100%;
+  padding-left: 16px;
 }
 
 .search_container:focus-within {
-    border-color: #adb5bd;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-color: #adb5bd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .search_input {
-    width: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    opacity: 0;
-    background-color: #ecedef;
+  width: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  background-color: #ecedef;
 }
 
 .search_input.expanded {
-    width: 100%;
-    padding: 0 16px;
-    opacity: 1;
+  width: 100%;
+  padding: 0 16px;
+  opacity: 1;
 }
 
 .search_button {
-    min-width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #495057;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  min-width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #495057;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .search_button:hover {
-    color: #212529;
-    background-color: rgba(0, 0, 0, 0.08);
+  color: #212529;
+  background-color: rgba(0, 0, 0, 0.08);
 }
