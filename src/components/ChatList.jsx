@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 import "./ChatList.css";
-import ChatRoom from "./ChatRoom";
 
 const ChatList = ({ chatList }) => {
+  const nav = useNavigate();
+
+  const handleClickRoom = (roomNo) => {
+    nav("/room/"+roomNo)
+  }
+
   return (
     <div className="ChatList">
       <h4>방 목록</h4>
@@ -9,9 +16,17 @@ const ChatList = ({ chatList }) => {
         <div className="room_items_container">
           {chatList &&
             chatList.map((chatRoom) => {
-              return <ChatRoom key={chatRoom.roomNo} {...chatRoom} />;
+              return (
+                <div key={chatRoom.roomNo} className="room" onClick={()=>handleClickRoom(chatRoom.roomNo)}>
+                  <div className="title">{chatRoom.title}</div>
+                  <div className="content">{chatRoom.content}</div>
+                  <div className="chatDate">{chatRoom.chatDate}</div>
+                </div>
+              );
             })}
-          {chatList.length === 0 && <ChatRoom title={"방이 없습니다."} />}
+          {chatList.length === 0 && (
+            <div className="room">방이 존재하지 않습니다.</div>
+          )}
         </div>
       </div>
     </div>

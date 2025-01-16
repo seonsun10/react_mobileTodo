@@ -8,6 +8,7 @@ import Chat from "./Chat";
 import Settings from "./Settings";
 import Footer from "./components/Footer";
 import EditTodo from "./components/EditTodo";
+import ChatRoom from "./components/ChatRoom";
 
 // mockData: 임시 할 일 데이터
 const mockData = [
@@ -93,16 +94,10 @@ function App() {
       mockData,
       today,
       tomorrow,
+      dispatch,
     }),
     [today, tomorrow]
   );
-
-  const addTodo = (newData) => {
-    dispatch({
-      type:"CREATE",
-      data:newData,
-    })
-  }
 
   return (
     <TodoContext.Provider value={contextValue}>
@@ -112,7 +107,8 @@ function App() {
         <Route path="/calendar" element={<TodoCalendar />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/newTodo" element={<EditTodo addTodo={addTodo}/>}></Route>
+        <Route path="/newTodo" element={<EditTodo/>}></Route>
+        <Route path="/room/:id" element={<ChatRoom/>}></Route>
       </Routes>
       <Footer />
     </TodoContext.Provider>

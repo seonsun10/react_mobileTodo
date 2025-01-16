@@ -12,8 +12,8 @@ import "./EditTodo.css";
 // 로케일 등록
 registerLocale("ko", ko);
 
-const EditTodo = ({addTodo}) => {
-  const { mockData } = useContext(TodoContext);
+const EditTodo = () => {
+  const { dispatch, mockData } = useContext(TodoContext);
   const todoId = useRef(mockData.length + 1);
   const [register, setRegister] = useState("");
   const [title, setTitle] = useState("");
@@ -22,8 +22,12 @@ const EditTodo = ({addTodo}) => {
 
   const nav = useNavigate();
 
+  // 저장
   const handleClickAdd = () => {
     if (register === "" || title === "" || content === "" || date === "") {
+      return;
+    }
+    if(!confirm("일정을 등록하시겠습니까?")){
       return;
     }
     const newData = {
@@ -34,7 +38,10 @@ const EditTodo = ({addTodo}) => {
       date: date.toLocaleDateString(),
     };
 
-    addTodo(newData);
+    dispatch({
+      type:"CREATE",
+      data:newData,
+    })
 
     //입력데이터 초기화
     setRegister("");
@@ -73,9 +80,8 @@ const EditTodo = ({addTodo}) => {
           selected={date}
           onChange={(date) => setDate(date)}
           showTimeSelect
-          dateFormat="yyyy-MM-dd HH:mm"
-          timeFormat="HH:mm"
-          placeholderText="날짜와 시간을 선택하세요"
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택하세요"
           className="datepicker-input" // 커스텀 클래스 추가
         />
       </div>

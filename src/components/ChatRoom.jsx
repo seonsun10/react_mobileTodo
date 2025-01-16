@@ -1,9 +1,12 @@
-const ChatRoom = ({title, content, chatDate}) => {
-  return <div className="room">
-  <div className="title">{title}</div>
-  <div className="content">{content}</div>
-  <div className="chatDate">{chatDate}</div>
-</div>
+import { useParams } from "react-router-dom";
+
+const ChatRoom = () => {
+  const params = useParams();
+
+
+  return <div className="ChatRoom">
+
+  </div>;
 };
 
 export default ChatRoom;
