@@ -22,7 +22,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.settingItem {
+.settingsBox>div {
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 10px;
@@ -30,17 +30,17 @@
   transition: background-color 0.3s ease;
 }
 
-.settingItem:hover {
+.settingsBox>div:hover {
   background-color: #e9ecef;
 }
 
-.settingItem h5 {
+.settingsBox>div h5 {
   margin: 0;
   font-weight: bold;
   color: #2c3e50;
 }
 
-.settingItem p {
+.settingsBox>div p {
   margin: 5px 0 0 0;
   color: #34495e;
 }

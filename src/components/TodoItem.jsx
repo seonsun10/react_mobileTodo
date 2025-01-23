@@ -1,5 +1,10 @@
-const TodoItem = ({ date, items }) => {
+const TodoItem = ({ date, items, todoDetail }) => {
   
+  // 상세화면 조회할 투두
+  const handleClickDetail = (id) => {
+    todoDetail(id);
+  }
+
     return (
       <div className="todo">
         <div className="todo_date">{date}</div>
@@ -8,7 +13,7 @@ const TodoItem = ({ date, items }) => {
             <div className="noData">할 일이 없습니다!</div>
           ) : (
             items.map((item) => (
-            <div key={item.id} className="todo_item">
+            <div key={item.id} className="todo_item" onClick={()=>handleClickDetail(item.id)}>
               <div className="todo_item_header">
                 <h3 className="todo_title">{item.title}</h3>
               </div>
