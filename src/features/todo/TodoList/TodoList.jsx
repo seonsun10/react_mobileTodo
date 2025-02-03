@@ -1,16 +1,16 @@
 import { useContext, useState, useMemo } from "react";
-import { TodoContext } from "../App";
+import { TodoContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 
-import TodoItem from "./TodoItem";
-import Search from "./Search";
-import Button from "./Button";
+import TodoItem from "../TodoItem/TodoItem";
+import Search from "../../../components/common/Search/Search";
+import Button from "../../../components/common/Button/Button";
 
 import "./TodoList.css";
 
 const TodoList = () => {
   // Context에서 오늘과 내일의 할 일 데이터를 가져옴
-  const { mockData, today, tomorrow } = useContext(TodoContext);
+  const { todos, today, tomorrow } = useContext(TodoContext);
 
   // 페이지 이동
   const nav = useNavigate();
@@ -41,7 +41,7 @@ const TodoList = () => {
 
   // 투두 상세조회
   const todoDetail = (id) => {
-    const detailTodo = mockData.filter(item=>{return item.id === id ? item : null});
+    const detailTodo = todos.filter(item=>{return item.id === id ? item : null});
   }
 
   return (

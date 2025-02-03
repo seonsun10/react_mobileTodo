@@ -18,9 +18,9 @@ const ChatList = ({ chatList }) => {
             chatList.map((chatRoom) => {
               return (
                 <div key={chatRoom.roomNo} className="room" onClick={()=>handleClickRoom(chatRoom.roomNo)}>
-                  <div className="title">{chatRoom.title}</div>
-                  <div className="content">{chatRoom.content}</div>
-                  <div className="chatDate">{chatRoom.chatDate}</div>
+                  <div className="title">{chatRoom.roomName}</div>
+                  <div className="content">{chatRoom.lastChat}</div>
+                  <div className="chatDate">{chatRoom.createDate}</div>
                 </div>
               );
             })}

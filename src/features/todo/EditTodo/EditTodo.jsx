@@ -1,9 +1,9 @@
 import { useRef, useContext, useState } from "react";
-import { TodoContext } from "../App";
+import { TodoContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 
 import DatePicker, { registerLocale } from "react-datepicker";
-import Button from "./Button";
+import Button from "../../../components/common/Button/Button";
 import { ko } from "date-fns/locale"; // 한국어 로케일 가져오기
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,8 +13,8 @@ import "./EditTodo.css";
 registerLocale("ko", ko);
 
 const EditTodo = () => {
-  const { dispatch, mockData } = useContext(TodoContext);
-  const todoId = useRef(mockData.length + 1);
+  const { dispatch, todos } = useContext(TodoContext);
+  const todoId = useRef(todos.length + 1);
   const [register, setRegister] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -27,7 +27,7 @@ const EditTodo = () => {
     if (register === "" || title === "" || content === "" || date === "") {
       return;
     }
-    if(!confirm("일정을 등록하시겠습니까?")){
+    if (!confirm("일정을 등록하시겠습니까?")) {
       return;
     }
     const newData = {
@@ -39,9 +39,9 @@ const EditTodo = () => {
     };
 
     dispatch({
-      type:"CREATE",
-      data:newData,
-    })
+      type: "CREATE",
+      data: newData,
+    });
 
     //입력데이터 초기화
     setRegister("");

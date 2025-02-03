@@ -1,8 +1,7 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. 투두 상세화면 및 상세기능 구현
+2. 캘린더에 투두 정보 출력
+3. 캘린더에서 투두 정보 modal출력
+4. 채팅 구현
+5. 로그인 구현
+6. 투두 정보 입력 개선
+7. 알림 구현

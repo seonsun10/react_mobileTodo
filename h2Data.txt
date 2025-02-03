@@ -1,0 +1,17 @@
+INSERT INTO todo(todo_Id, register, title, content, date) VALUES
+(1, '덕자', '오늘 할일 1: 코드 리뷰', '프론트엔드 코드 리뷰 및 피드백', CURRENT_TIMESTAMP);
+INSERT INTO todo(todo_Id, register, title, content, date) VALUES
+(2, '풍호', '오늘 할일 2: API 연동', '백엔드 API 연동 작업', CURRENT_TIMESTAMP);
+INSERT INTO todo(todo_Id, register, title, content, date) VALUES
+(3, '민둥', '내일 할일 1: 디자인 미팅', 'UI/UX 디자인 검토 회의', CURRENT_TIMESTAMP+1);
+INSERT INTO todo (todo_Id, register, title, content, date) VALUES
+(4, '광식', '내일 할일 2: 테스트 코드', '단위 테스트 코드 작성', CURRENT_TIMESTAMP+1);
+
+
+
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (1, '개발자들의 방', '프로그래밍 관련 질문과 답변을 나누는 방입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (2, '디자인 토론방', '디자인 관련 아이디어와 피드백을 공유하는 공간입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (3, '게임 개발 방', '게임 개발에 관한 모든 것을 이야기하는 방입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (4, 'AI 연구실', '인공지능과 머신러닝에 대한 연구와 토론을 하는 방입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (5, '일상 대화방', '일상적인 이야기와 소소한 대화를 나누는 방입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));
+INSERT INTO chatroom (room_no, room_name, last_chat, create_date) VALUES (6, '영화 추천 방', '좋은 영화를 추천하고 리뷰를 나누는 방입니다.', DATEADD('DAY', -FLOOR(RAND() * 30), CURRENT_TIMESTAMP));

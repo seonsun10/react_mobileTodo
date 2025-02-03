@@ -1,63 +1,33 @@
 import { useState, useMemo, createContext, useReducer, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import List from "./List";
-import TodoCalendar from "./TodoCalendar";
-import Chat from "./Chat";
-import Settings from "./Settings";
-import Footer from "./components/Footer";
-import EditTodo from "./components/EditTodo";
-import ChatRoom from "./components/ChatRoom";
+import Header from "./components/layout/Header/Header";
+import List from "./pages/List";
+import TodoCalendar from "./features/calendar/TodoCalendar";
+import Chat from "./features/chat/Chat";
+import Settings from "./pages/Settings";
+import Footer from "./components/layout/Footer/Footer";
+import EditTodo from "./features/todo/EditTodo/EditTodo";
+import ChatRoom from "./features/chat/ChatRoom";
 
 import axios from "axios";
 
-// mockData: 임시 할 일 데이터
-const mockData = [
-  {
-    id: 1,
-    register: "덕자",
-    title: "오늘 할일 1: 코드 리뷰",
-    content: "프론트엔드 코드 리뷰 및 피드백",
-    date: new Date().toLocaleDateString(),
-  },
-  {
-    id: 2,
-    register: "풍호",
-    title: "오늘 할일 2: API 연동",
-    content: "백엔드 API 연동 작업",
-    date: new Date().toLocaleDateString(),
-  },
-  {
-    id: 3,
-    register: "민둥",
-    title: "내일 할일 1: 디자인 미팅",
-    content: "UI/UX 디자인 검토 회의",
-    date: new Date(
-      new Date().setDate(new Date().getDate() + 1)
-    ).toLocaleDateString(),
-  },
-  {
-    id: 4,
-    register: "광식",
-    title: "내일 할일 2: 테스트 코드",
-    content: "단위 테스트 코드 작성",
-    date: new Date(
-      new Date().setDate(new Date().getDate() + 1)
-    ).toLocaleDateString(),
-  },
-];
+const REDUCER_TYPE = {
+  CREATE: "CREATE",
+  UPDATE: "UPDATE",
+  DELETE: "DELETE",
+};
 
 // reducer: 할 일 데이터 CRUD 작업을 처리하는 함수
 const reducer = (state, action) => {
   switch (action.type) {
-    case "CREATE":
+    case REDUCER_TYPE.CREATE:
       return [...state, action.data];
-    case "UPDATE":
+    case REDUCER_TYPE.UPDATE:
       return state.map((item) =>
         String(action.data.id) === String(item.id) ? action.data : item
       );
-    case "DELETE":
+    case REDUCER_TYPE.DELETE:
       return state.filter((item) => String(item.id) !== String(action.data.id));
     default:
       return state;
@@ -68,7 +38,9 @@ const reducer = (state, action) => {
 const getTodayData = (state) => {
   const today = new Date().toLocaleDateString();
 
-  return state.filter((item) => item.date === today); // 단일데이터
+  return state.filter(
+    (item) => new Date(item.date).toLocaleDateString() === today
+  ); // 단일데이터
 };
 
 // 내일 날짜의 할 일 데이터만 필터링하여 반환
@@ -77,39 +49,41 @@ const getTomorrowData = (state) => {
   const tomorrow = new Date(
     today.setDate(today.getDate() + 1)
   ).toLocaleDateString();
-  return state.filter((item) => item.date === tomorrow);
+  return state.filter(
+    (item) => new Date(item.date).toLocaleDateString() === tomorrow
+  );
 };
 
 // Context API를 통해 할 일 데이터를 전역으로 관리
 export const TodoContext = createContext();
 
 function App() {
-  const [users, setUsers] = useState();
-  ///
+  // useReducer를 사용하여 할 일 데이터 상태 관리
+  const [todos, dispatch] = useReducer(reducer, []);
+
   useEffect(() => {
     async function getUser() {
-      const response = await axios.get(`/search`);
-      console.log(response);
+      const response = await axios.get(`/todo/searchTodo`);
       const data = response.data;
 
-      setUsers(data);
+      data.map((item) => {
+        dispatch({
+          type: "CREATE",
+          data: item,
+        });
+      });
     }
 
     getUser();
   }, []);
-  ///
-  console.log(users);
-
-  // useReducer를 사용하여 할 일 데이터 상태 관리
-  const [state, dispatch] = useReducer(reducer, mockData);
 
   // 성능 최적화를 위해 오늘/내일 데이터 메모이제이션
-  const today = useMemo(() => getTodayData(state), [state]);
-  const tomorrow = useMemo(() => getTomorrowData(state), [state]);
+  const today = useMemo(() => getTodayData(todos), [todos]);
+  const tomorrow = useMemo(() => getTomorrowData(todos), [todos]);
 
   const contextValue = useMemo(
     () => ({
-      mockData,
+      todos,
       today,
       tomorrow,
       dispatch,

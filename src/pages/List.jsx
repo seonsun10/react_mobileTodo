@@ -1,4 +1,4 @@
-import TodoList from "./components/TodoList";
+import TodoList from "../features/todo/TodoList/TodoList";
 
 const List = ({ children }) => {
   return (

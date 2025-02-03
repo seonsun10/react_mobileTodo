@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/search': {
+      '/todo': {
         target: 'http://localhost:5174', // Spring Boot 서버 주소
         changeOrigin: true,
       },
