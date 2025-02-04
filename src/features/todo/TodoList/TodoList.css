@@ -44,6 +44,11 @@
   position: relative;
 }
 
+.todo_item:hover {
+  cursor: pointer;
+  background-color: #e9ecef;
+}
+
 .todo_item_header {
   margin-bottom: 8px;
 }

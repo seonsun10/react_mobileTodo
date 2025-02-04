@@ -12,7 +12,7 @@ import "./EditTodo.css";
 // 로케일 등록
 registerLocale("ko", ko);
 
-const EditTodo = () => {
+const NewTodo = () => {
   const { dispatch, todos } = useContext(TodoContext);
   const todoId = useRef(todos.length + 1);
   const [register, setRegister] = useState("");
@@ -79,7 +79,6 @@ const EditTodo = () => {
           locale="ko"
           selected={date}
           onChange={(date) => setDate(date)}
-          showTimeSelect
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택하세요"
           className="datepicker-input" // 커스텀 클래스 추가
@@ -98,4 +97,4 @@ const EditTodo = () => {
   );
 };
 
-export default EditTodo;
+export default NewTodo;

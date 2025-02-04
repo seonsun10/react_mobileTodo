@@ -1,8 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const TodoItem = ({ date, items, todoDetail }) => {
-  // 상세화면 조회할 투두
-  const handleClickDetail = (id) => {
-    todoDetail(id);
-  };
+
+  const nav = useNavigate();
 
   return (
     <div className="todo">
@@ -15,7 +15,7 @@ const TodoItem = ({ date, items, todoDetail }) => {
             <div 
               key={item.todoId} 
               className="todo_item" 
-              onClick={() => handleClickDetail(item.id)}
+              onClick={() => nav(`/detailTodo/${item.todoId}`)}
             >
               <div className="todo_item_header">
                 <h3 className="todo_title">{item.title}</h3>

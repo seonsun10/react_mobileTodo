@@ -1,4 +1,4 @@
-import { useState, useMemo, createContext, useReducer, useEffect } from "react";
+import { useState, useMemo, createContext, useReducer, useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/layout/Header/Header";
@@ -7,8 +7,9 @@ import TodoCalendar from "./features/calendar/TodoCalendar";
 import Chat from "./features/chat/Chat";
 import Settings from "./pages/Settings";
 import Footer from "./components/layout/Footer/Footer";
-import EditTodo from "./features/todo/EditTodo/EditTodo";
+import NewTodo from "./features/todo/EditTodo/NewTodo";
 import ChatRoom from "./features/chat/ChatRoom";
+import DetailTodo from "./features/todo/EditTodo/DetailTodo";
 
 import axios from "axios";
 
@@ -25,10 +26,10 @@ const reducer = (state, action) => {
       return [...state, action.data];
     case REDUCER_TYPE.UPDATE:
       return state.map((item) =>
-        String(action.data.id) === String(item.id) ? action.data : item
+        String(action.data.id) === String(item.todoId) ? action.data : item
       );
     case REDUCER_TYPE.DELETE:
-      return state.filter((item) => String(item.id) !== String(action.data.id));
+      return state.filter((item) => String(item.todoId) !== String(action.data.id));
     default:
       return state;
   }
@@ -88,7 +89,7 @@ function App() {
       tomorrow,
       dispatch,
     }),
-    [today, tomorrow]
+    [todos, today, tomorrow]
   );
 
   return (
@@ -99,7 +100,8 @@ function App() {
         <Route path="/calendar" element={<TodoCalendar />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
-        <Route path="/newTodo" element={<EditTodo />}></Route>
+        <Route path="/detailTodo/:id" element={<DetailTodo />}></Route>
+        <Route path="/newTodo" element={<NewTodo />}></Route>
         <Route path="/room/:id" element={<ChatRoom />}></Route>
       </Routes>
       <Footer />
