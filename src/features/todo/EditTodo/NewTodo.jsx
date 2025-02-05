@@ -8,6 +8,7 @@ import { ko } from "date-fns/locale"; // 한국어 로케일 가져오기
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./EditTodo.css";
+import axios from "axios";
 
 // 로케일 등록
 registerLocale("ko", ko);
@@ -18,27 +19,30 @@ const NewTodo = () => {
   const [register, setRegister] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [regDttm, setRegDttm] = useState("");
+  const [todoDate, setTodoDate] = useState("");
 
   const nav = useNavigate();
 
   // 저장
-  const handleClickAdd = () => {
-    if (register === "" || title === "" || content === "" || regDttm === "") {
+  const handleClickAdd = async () => {
+    if (register === "" || title === "" || content === "" || todoDate === "") {
       return;
     }
     if (!confirm("일정을 등록하시겠습니까?")) {
       return;
     }
 
-
     const newData = {
-      id: todoId.current++,
+      todoId: todoId.current++,
       register: register,
       title: title,
       content: content,
-      regDttm: date.toLocaleDateString(),
+      todoDate: todoDate,
     };
+    console.log(newData);
+
+    //서버에 데이터 저장
+    const response = await axios.post("/todo/addTodo",newData);
 
     dispatch({
       type: "CREATE",
@@ -49,7 +53,7 @@ const NewTodo = () => {
     setRegister("");
     setTitle("");
     setContent("");
-    setRegDttm("");
+    setTodoDate("");
 
     //등록 후 리스트로 반환
     nav("/");
@@ -79,8 +83,8 @@ const NewTodo = () => {
         <h4>일정</h4>
         <DatePicker
           locale="ko"
-          selected={date}
-          onChange={(date) => setRegDttm(date)}
+          selected={todoDate}
+          onChange={(date) => setTodoDate(date)}
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택하세요"
           className="datepicker-input" // 커스텀 클래스 추가

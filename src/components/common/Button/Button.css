@@ -1,16 +1,15 @@
 /* 버튼 영역 */
-.ButtonArea{
-    /* width: 100%; */
-    text-align: right;
-    padding: 10px 0;
+.ButtonArea {
+  /* width: 100%; */
+  text-align: right;
+  padding: 10px 0;
 }
 
-.BtnBox{
+.BtnBox {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
-
 
 /* 기본 버튼 스타일 */
 .Button {
@@ -26,16 +25,16 @@
 }
 
 .Button:hover {
-    background-color: #25943f;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  background-color: #25943f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .Button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  /* ##기본 버튼 스타일 */
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* ##기본 버튼 스타일 */
 
 .Button_ADD {
   position: fixed;
@@ -95,5 +94,9 @@
 }
 
 .Button_DEL {
-    background-color: rgb(223, 63, 63);
+  background-color: rgb(223, 63, 63);
+}
+
+.Button_DEL:hover {
+  background-color: rgb(197, 56, 56);
 }

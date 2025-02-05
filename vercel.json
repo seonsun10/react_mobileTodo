@@ -1,0 +1,10 @@
+{
+    "redirects": [
+      {
+        "source": "/todo",
+        "destination": "http://localhost:5174/todo",
+        "permanent": false
+      }
+    ]
+  }
+  

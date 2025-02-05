@@ -26,10 +26,7 @@ const reducer = (state, action) => {
     case REDUCER_TYPE.INIT:
       return action.data;
     case REDUCER_TYPE.CREATE:
-      async ()=>{
-        await axios.post("/todo/addTodo",action.data);
-      }
-      return [...state, action.data];
+      return [action.data,...state];
     case REDUCER_TYPE.UPDATE:
       return state.map((item) =>
         String(action.data.id) === String(item.todoId) ? action.data : item
@@ -46,7 +43,7 @@ const getTodayData = (state) => {
   const today = new Date().toLocaleDateString();
 
   return state.filter(
-    (item) => new Date(item.regDttm).toLocaleDateString() === today
+    (item) => new Date(item.todoDate).toLocaleDateString() === today
   ); // 단일데이터
 };
 
@@ -57,7 +54,7 @@ const getTomorrowData = (state) => {
     today.setDate(today.getDate() + 1)
   ).toLocaleDateString();
   return state.filter(
-    (item) => new Date(item.regDttm).toLocaleDateString() === tomorrow
+    (item) => new Date(item.todoDate).toLocaleDateString() === tomorrow
   );
 };
 
