@@ -7,9 +7,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/todo': {
-        target: 'http://localhost:5174', // Spring Boot 서버 주소
+        target: 'http://localhost:5174', // 서버 주소
         changeOrigin: true,
       },
     },
+    hmr: true,
   },
 })

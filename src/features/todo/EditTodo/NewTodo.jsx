@@ -18,24 +18,26 @@ const NewTodo = () => {
   const [register, setRegister] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [date, setDate] = useState("");
+  const [regDttm, setRegDttm] = useState("");
 
   const nav = useNavigate();
 
   // 저장
   const handleClickAdd = () => {
-    if (register === "" || title === "" || content === "" || date === "") {
+    if (register === "" || title === "" || content === "" || regDttm === "") {
       return;
     }
     if (!confirm("일정을 등록하시겠습니까?")) {
       return;
     }
+
+
     const newData = {
       id: todoId.current++,
       register: register,
       title: title,
       content: content,
-      date: date.toLocaleDateString(),
+      regDttm: date.toLocaleDateString(),
     };
 
     dispatch({
@@ -47,7 +49,7 @@ const NewTodo = () => {
     setRegister("");
     setTitle("");
     setContent("");
-    setDate("");
+    setRegDttm("");
 
     //등록 후 리스트로 반환
     nav("/");
@@ -78,7 +80,7 @@ const NewTodo = () => {
         <DatePicker
           locale="ko"
           selected={date}
-          onChange={(date) => setDate(date)}
+          onChange={(date) => setRegDttm(date)}
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택하세요"
           className="datepicker-input" // 커스텀 클래스 추가

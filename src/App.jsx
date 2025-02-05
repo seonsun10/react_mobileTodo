@@ -14,6 +14,7 @@ import DetailTodo from "./features/todo/EditTodo/DetailTodo";
 import axios from "axios";
 
 const REDUCER_TYPE = {
+  INIT: "INIT",
   CREATE: "CREATE",
   UPDATE: "UPDATE",
   DELETE: "DELETE",
@@ -22,7 +23,12 @@ const REDUCER_TYPE = {
 // reducer: 할 일 데이터 CRUD 작업을 처리하는 함수
 const reducer = (state, action) => {
   switch (action.type) {
+    case REDUCER_TYPE.INIT:
+      return action.data;
     case REDUCER_TYPE.CREATE:
+      async ()=>{
+        await axios.post("/todo/addTodo",action.data);
+      }
       return [...state, action.data];
     case REDUCER_TYPE.UPDATE:
       return state.map((item) =>
@@ -40,7 +46,7 @@ const getTodayData = (state) => {
   const today = new Date().toLocaleDateString();
 
   return state.filter(
-    (item) => new Date(item.date).toLocaleDateString() === today
+    (item) => new Date(item.regDttm).toLocaleDateString() === today
   ); // 단일데이터
 };
 
@@ -51,7 +57,7 @@ const getTomorrowData = (state) => {
     today.setDate(today.getDate() + 1)
   ).toLocaleDateString();
   return state.filter(
-    (item) => new Date(item.date).toLocaleDateString() === tomorrow
+    (item) => new Date(item.regDttm).toLocaleDateString() === tomorrow
   );
 };
 
@@ -66,12 +72,10 @@ function App() {
     async function getUser() {
       const response = await axios.get(`/todo/searchTodo`);
       const data = response.data;
-
-      data.map((item) => {
-        dispatch({
-          type: "CREATE",
-          data: item,
-        });
+      
+      dispatch({
+        type: "INIT",
+        data: data
       });
     }
 

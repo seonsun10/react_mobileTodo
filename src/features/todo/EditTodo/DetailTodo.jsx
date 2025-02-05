@@ -23,14 +23,14 @@ const DetailTodo = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [register, setRegister] = useState("");
-  const [date, setDate] = useState(null);
+  const [regDttm, setRegDttm] = useState(null);
 
   //todo변경될 때 마다 재할당
   useEffect(() => {
     setTitle(todo.title || "");
     setContent(todo.content || "");
     setRegister(todo.register || "");
-    setDate(todo.date ? new Date(todo.date) : null);
+    setRegDttm(todo.regDttm ? new Date(todo.regDttm) : null);
   }, [todo]);
 
   //todo삭제
@@ -77,8 +77,8 @@ const DetailTodo = () => {
         <h4>일정</h4>
         <DatePicker
           locale="ko"
-          selected={date}
-          onChange={(date) => setDate(date)}
+          selected={regDttm}
+          onChange={(date) => setRegDttm(date)}
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택하세요"
           className="datepicker-input" // 커스텀 클래스 추가
