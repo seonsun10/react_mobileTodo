@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/todo': {
-        target: 'http://localhost:5174', // 서버 주소
+        target: 'https://running-stace-seonsun10-a588ed5f.koyeb.app', // 서버 주소
         changeOrigin: true,
       },
     },
