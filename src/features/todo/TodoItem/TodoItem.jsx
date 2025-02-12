@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-const TodoItem = ({ date, items, todoDetail }) => {
+const TodoItem = ({ todoDate, items }) => {
 
   const nav = useNavigate();
 
   return (
     <div className="todo">
-      <div className="todo_date">{date}</div>
+      <div className="todo_date">{new Date(todoDate).toLocaleDateString()}</div>
       <div key={'todo_items_container'} className="todo_items_container">
         {items.length === 0 ? (
           <div className="noData">할 일이 없습니다!</div>

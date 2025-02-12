@@ -50,19 +50,24 @@ const TodoList = () => {
           <div className="today_section">
             <h4>오늘의 할 일!</h4>
             {today && today.length > 0 && (
-              <TodoItem date={today[0].date} items={todayData}/>
+              <TodoItem todoDate={today[0].todoDate} items={todayData} />
             )}
           </div>
 
           <div className="tomorrow_section">
             <h4>내일의 할 일!</h4>
             {tomorrow && tomorrow.length > 0 && (
-              <TodoItem date={tomorrow[0].date} items={tomorrowData}/>
+              <TodoItem todoDate={tomorrow[0].todoDate} items={tomorrowData} />
             )}
           </div>
         </div>
       </div>
-      <Button type={"ADD bi bi-pencil"} clickBtn={()=>{nav('/newTodo')}}/>
+      <Button
+        type={"ADD bi bi-pencil"}
+        clickBtn={() => {
+          nav("/newTodo");
+        }}
+      />
     </>
   );
 };

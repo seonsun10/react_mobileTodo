@@ -39,7 +39,7 @@ const NewTodo = () => {
       content: content,
       todoDate: todoDate,
     };
-    console.log(newData);
+
 
     //서버에 데이터 저장
     const response = await axios.post("/todo/addTodo",newData);

@@ -20,10 +20,10 @@ const DetailTodo = () => {
 
   const { dispatch } = useContext(TodoContext);
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [register, setRegister] = useState("");
-  const [todoDate, setTodoDate] = useState(null);
+  const [title, setTitle] = useState(todo.title);
+  const [content, setContent] = useState(todo.content);
+  const [register, setRegister] = useState(todo.register);
+  const [todoDate, setTodoDate] = useState(todo.date);
 
   //todo변경될 때 마다 재할당
   useEffect(() => {
@@ -51,6 +51,25 @@ const DetailTodo = () => {
     }
 
     deleteTodo();
+  }
+
+  //수정
+  function handleUpdateTodo(){
+    if(!confirm("수정하시겠습니까?")){
+        return ;
+    }
+
+    fixedTodo = {
+        todoId: params.id,
+        title: title,
+        content: content,
+        register: register,
+        todoDate: todoDate,
+      };
+
+    async function updateTodo(){
+        await axios.patch(`/todo/updateTodo/${params.id}`);
+    }
   }
 
   return (
