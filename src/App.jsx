@@ -67,7 +67,7 @@ function App() {
 
   useEffect(() => {
     async function getUser() {
-      const response = await axios.get(`/todo/searchTodo`);
+      const response = await axios.get(`https://running-stace-seonsun10-a588ed5f.koyeb.app/todo/searchTodo`);
       const data = response.data;
       
       dispatch({
