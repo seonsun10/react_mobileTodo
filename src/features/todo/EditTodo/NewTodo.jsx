@@ -42,7 +42,7 @@ const NewTodo = () => {
 
 
     //서버에 데이터 저장
-    const response = await axios.post("/todo/addTodo",newData);
+    const response = await axios.post("https://running-stace-seonsun10-a588ed5f.koyeb.app/todo/addTodo",newData);
 
     dispatch({
       type: "CREATE",

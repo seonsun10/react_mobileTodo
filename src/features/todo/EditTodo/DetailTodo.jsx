@@ -40,7 +40,7 @@ const DetailTodo = () => {
     }
 
     async function deleteTodo() {
-      await axios.delete(`/todo/deleteTodo/${params.id}`);
+      await axios.delete(`https://running-stace-seonsun10-a588ed5f.koyeb.app/todo/deleteTodo/${params.id}`);
       dispatch({
         type:"DELETE",
         data:{
@@ -68,7 +68,7 @@ const DetailTodo = () => {
       };
 
     async function updateTodo(){
-        await axios.patch(`/todo/updateTodo/${params.id}`);
+        await axios.patch(`https://running-stace-seonsun10-a588ed5f.koyeb.app/todo/updateTodo/${params.id}`);
     }
   }
 

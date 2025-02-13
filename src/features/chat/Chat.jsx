@@ -29,7 +29,7 @@ const Chat = () => {
   //채팅방 목록 조회
   useEffect(() => {
     async function getChatRoom() {
-      const response = await axios.get("/todo/searchChatRoom");
+      const response = await axios.get("https://running-stace-seonsun10-a588ed5f.koyeb.app/searchChatRoom");
       const data = response.data;
       
       data.map(item=>{
